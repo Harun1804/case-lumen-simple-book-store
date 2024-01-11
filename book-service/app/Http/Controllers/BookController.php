@@ -20,12 +20,16 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book = $this->bookService->getById($id);
-        if($book) {
-            return $this->successResponse($book);
-        }
+        try {
+            $book = $this->bookService->getById($id);
+            if($book) {
+                return $this->successResponse($book);
+            }
 
-        return $this->errorResponse('Book not found', 404);
+            return $this->errorResponse('Book not found', 404);
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), $e->getCode());
+        }
     }
 
     public function store(Request $request)

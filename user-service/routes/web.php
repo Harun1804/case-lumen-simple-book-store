@@ -35,3 +35,14 @@ $router->group([
     $router->post('/login', 'AuthController@login');
     $router->post('/logout', 'AuthController@logout');
 });
+
+$router->group([
+    'prefix' => 'books',
+    'middleware' => 'auth:api',
+], function() use($router){
+    $router->get('/', 'BookController@getAll');
+    $router->get('/{id}', 'BookController@getById');
+    $router->post('/', 'BookController@store');
+    $router->put('/{id}', 'BookController@update');
+    $router->delete('/{id}', 'BookController@delete');
+});
