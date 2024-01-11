@@ -25,7 +25,6 @@ class BookController extends Controller
             if ($user){
                 return $this->serviceSuccessResponse($user, 'Book retrieved successfully');
             }
-            return $this->serviceSuccessResponse([], 'Book not found', 404);
         } catch (\Exception $e) {
             return $this->serviceErrorResponse($e->getMessage(), 500);
         }
@@ -35,7 +34,6 @@ class BookController extends Controller
     {
         try {
             $this->bookService->createBook($request->all());
-
             return $this->serviceSuccessResponse([], 'User created successfully', 201);
         } catch (\Exception $e) {
             return $this->serviceErrorResponse($e->getMessage(), 500);
@@ -50,7 +48,6 @@ class BookController extends Controller
                 $this->bookService->updateBook($id, $request->all());
                 return $this->serviceSuccessResponse([], 'Book updated successfully');
             }
-            return $this->serviceSuccessResponse([], 'Book not found', 404);
         } catch (\Exception $e) {
             return $this->serviceErrorResponse($e->getMessage(), 500);
         }
@@ -64,7 +61,6 @@ class BookController extends Controller
                 $this->bookService->deleteBook($id);
                 return $this->serviceSuccessResponse([], 'Book deleted successfully');
             }
-            return $this->serviceSuccessResponse([], 'Book not found', 404);
         } catch (\Exception $e) {
             return $this->serviceErrorResponse($e->getMessage(), 500);
         }

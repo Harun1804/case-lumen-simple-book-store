@@ -20,7 +20,7 @@ trait HasApiRequest
                 'headers' => $headers
             ]
         );
-        
+
         return json_decode($response->getBody()->getContents());
     }
 }
